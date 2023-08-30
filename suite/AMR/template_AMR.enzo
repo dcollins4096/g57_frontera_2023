@@ -1,0 +1,90 @@
+#
+# PROBLEM DEFINITION FILE: MHD/HD turbulence problem with stochastic forcing 
+# Philipp Grete 2014
+#
+# Typical "turbulence-in-a-box" problem with non-static driving field.
+# For details on stochastic forcing, see Schmidt et al. 2009 A&A 494, 127-145 
+# http://dx.doi.org/10.1051/0004-6361:200809967
+#
+# Works/properly tested only on 3D uniform grids with MUSCL type solvers and MHDCT at this point.
+# For hydro use HydroMethod 3
+# For MHD use HydroMethod 4
+# For MHDCT use HydroMethod 6
+# 
+#  define problem
+#
+UseCUDA                    = 0
+ProblemType                = 59
+TopGridRank                = 3	
+TopGridDimensions          = {{TopGridDimensions}} 
+SelfGravity                = 1
+TopGridGravityBoundary     = 0
+LeftFaceBoundaryCondition  = 3 3 3
+RightFaceBoundaryCondition = 3 3 3
+
+TracerParticleOn = 1
+TracerParticleCreationLeftEdge = 0 0 0
+TracerParticleCreationRightEdge= 1 1 1
+#TracerParticleCreationSpacing = 0.0009765625 #0.0009765625=1/1024
+TracerParticleCreationSpacing = {{TracerSpacing}}
+
+#
+#  set I/O and stop/start parameters
+#
+StopTime            = 12
+dtDataDump          = -1
+StopCycle           = 1
+CycleSkipDataDump   = -1    
+DataDumpName        = data
+ParallelRootGridIO  = 1
+
+
+#
+#  set hydro parameters
+#
+HydroMethod                 = 6     # 3 - no MHD, 4 - MHD, 6 - MHDCT
+DualEnergyFormalism         = 0
+NumberOfGhostZones          = 5
+CorrectParentBoundaryFlux   = 1
+FluxCorrection              = 1
+CourantSafetyNumber         = 0.4
+Gamma                       = 1.001
+Mu                          = 1.0
+InterpolationMethod         = 1
+ConservativeInterpolation   = 1
+Theta_Limiter               = 1.5
+EOSType                     = 0
+
+#
+# problem parameters
+#
+UseDrivingField     = 0           # otherwise no driving...
+DrivenFlowProfile   = 0           # 0 - off (def.), 1 - peak, 2 - parabolic, 3 - band
+DrivenFlowAlpha     = 2 2 2       # ratio of domain size to characteristic length
+DrivenFlowSeed      = 20150419    # seed of random number generator
+DrivenFlowBandWidth = 1.0 1.0 1.0 # band width (1.0 = maximal) 
+DrivenFlowAutoCorrl = 1.0 1.0 1.0 # ratio auto-correlation to large-eddy turn-over time scale
+DrivenFlowMach      = 1.0 1.0 1.0# Mach number
+DrivenFlowWeight    = 0.5         # weight of solenoidal components
+DrivenFlowDensity    = 1.0        # initial uniform density
+DrivenFlowPressure   = 1.0        # initial uniform pressure
+DrivenFlowMagField  = 1e-7  # initial uniform field (x direction)
+
+
+#
+#  set grid refinement parameters
+#
+StaticHierarchy           = 0
+MaximumRefinementLevel    = 2
+CellFlaggingMethod = 4
+StaticHierarchy =   0       
+StaticRefineRegionLevel[0]  =   0       
+StaticRefineRegionLeftEdge[0]   =   0.25 0.25 0.25
+StaticRefineRegionRightEdge[0]  =   0.75 0.75 0.75
+StaticRefineRegionLevel[1]  =   1       
+StaticRefineRegionLeftEdge[1]   =   0.375 0.375 0.375
+StaticRefineRegionRightEdge[1]  =   0.625 0.625 0.625
+#StaticRefineRegionLevel[2]  =   2       
+#StaticRefineRegionLeftEdge[2]   =   0.4375 0.4375 0.4375
+#StaticRefineRegionRightEdge[2]  =   0.5625 0.5625 0.5625
+
