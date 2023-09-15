@@ -7,7 +7,7 @@
 #SBATCH -J {{jobname}}     # Job name
 #SBATCH -o {{jobname}}.o%j # Name of stdout output file(%j expands to jobId)
 #SBATCH -e {{jobname}}.o%j # Name of stderr output file(%j expands to jobId)
-#SBATCH -p normal          # Submit to the 'normal' or 'development' queue
+#SBATCH -p {{queue}}          # Submit to the 'normal' or 'development' queue
 #SBATCH -t 00:20:00             # Run time (hh:m) - 1.5 hours
 #SBATCH -N {{Nnodes}}                    # Total number of nodes requested (16 cores/node)
 #SBATCH -n {{ncores}}                   # Total number of mpi tasks requested
@@ -16,7 +16,6 @@
 #SBATCH --mail-type=begin  # email me when the job starts
 #SBATCH --mail-type=end    # email me when the job finishes
 # The next line is required if the user has more than one project
-#SBATCH -A TG-AST140008      # Allocation name to charge job against
 
 #USAGE 
 #Fix the node count and time above.
