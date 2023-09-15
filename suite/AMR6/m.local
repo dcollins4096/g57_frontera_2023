@@ -1,5 +1,5 @@
 # parameters for the script 'm'
-setenv Problem MHD.enzo
+setenv Problem NO
 
 setenv DataDir "./Data"     #I don't know if this does anything right now.
 setenv RestartDump data0030 #filename for restart

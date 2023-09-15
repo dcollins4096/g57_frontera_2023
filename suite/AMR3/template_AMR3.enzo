@@ -75,16 +75,7 @@ DrivenFlowMagField  = 1e-7  # initial uniform field (x direction)
 #  set grid refinement parameters
 #
 StaticHierarchy           = 0
-MaximumRefinementLevel    = 2
+MaximumRefinementLevel    = {{maximum_refinement}}
+{{refinement_regions}}
 CellFlaggingMethod = 4
 StaticHierarchy =   0       
-StaticRefineRegionLevel[0]  =   0       
-StaticRefineRegionLeftEdge[0]   =   0.25 0.25 0.25
-StaticRefineRegionRightEdge[0]  =   0.75 0.75 0.75
-StaticRefineRegionLevel[1]  =   1       
-StaticRefineRegionLeftEdge[1]   =   0.375 0.375 0.375
-StaticRefineRegionRightEdge[1]  =   0.625 0.625 0.625
-#StaticRefineRegionLevel[2]  =   2       
-#StaticRefineRegionLeftEdge[2]   =   0.4375 0.4375 0.4375
-#StaticRefineRegionRightEdge[2]  =   0.5625 0.5625 0.5625
-

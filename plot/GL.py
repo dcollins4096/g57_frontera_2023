@@ -3,7 +3,6 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.colorbar as cb
 
-import astropy.io.fits as pyfits
 import platform
 ver=platform.python_version()
 python_version=  int(ver[0])
@@ -12,7 +11,6 @@ if python_version == 3:
 import sys
 import re
 import copy
-import h5py
 import os
 import copy
 import warnings

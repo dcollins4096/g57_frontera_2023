@@ -1,0 +1,9 @@
+
+MHD: Only Hydro6, no driving or anything else.
+Grav: MHD+Gravity
+AMR1: One level of constant work
+AMR2: Two levels of constant work.
+AMR3: N levels of constant work, 6
+AMR4: nothing.
+AMR5: 8 level empty pancake
+AMR6: 9 level empty pancake.
